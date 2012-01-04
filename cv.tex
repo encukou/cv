@@ -17,11 +17,22 @@
 \documentclass[a4paper,10pt]{article}
 
 \usepackage[utf8]{inputenc}
-\usepackage[czech]{babel}
+
+\providecommand\tr[2]{#2}
+\tr{}{\usepackage[czech]{babel}}
+\providecommand\personalinfoAddress{{\huge\tt <do not typeset cv.tex directly>}}
+\providecommand\personalinfoPhone{\vspace{20em}}
+\providecommand\includeinfo{\input{personalinfo_hidden.tex}}
+\providecommand\includefullinfo{
+    \IfFileExists{personalinfo.tex}{\input{personalinfo.tex}}{\input{personalinfo_hidden.tex}}}
+\includeinfo
+
 \usepackage[T1, IL2]{fontenc}
+\usepackage[nodayofweek]{datetime}
 
 \usepackage{fouriernc}
 \usepackage{tgpagella}
+\usepackage{color}
 \usepackage[activate=true]{microtype}
 \usepackage[pdfborder={0 0 0}]{hyperref}
 \usepackage{amssymb}
@@ -32,9 +43,6 @@
 \newdimen\centeroffset
 \setlength\centeroffset{-\runinlength/4}
 \usepackage[a4paper,margin=2cm,left=2cm+\runinlength, right=3.5cm]{geometry}
-
-
-\IfFileExists{personalinfo.tex}{\input{personalinfo.tex}}{\input{personalinfo_hidden.tex}}
 
 
 \pagestyle{empty}
@@ -79,67 +87,122 @@
 
 \vspace{.5em}
 \begin{tabular}{rl}
-Birth Date & 14$^{\textrm\small{th}}$ of January, 1987 \\
-E-mail & \href{mailto:encukou@gmail.com}{encukou@gmail.com} \\
-Phone & \personalinfoPhone
+\tr{Birth Date}{Datum narození} &
+    \tr{14$^{\textrm\small{th}}$ of January, 1987}{14. ledna 1987} \\
+E-mail &
+    \href{mailto:encukou@gmail.com}{encukou@gmail.com} \\
+\tr{Phone}{Telefon} &
+    \personalinfoPhone
 \end{tabular}
 
 }
 
-\section{Education and Qualifications}
+\section{\tr{Education and Qualifications}{Vzdělání}}
 
-\header{2009 to date}{IMPIT program, University of Eastern Finland}
-Expecting a MSc. degree in January/February 2012.\\
-Average Computer Science grade $\geq$ 4.5 (on a scale of 1–5)
+\header{\tr{2009 to date}{2009---\phantom{000}}}{IMPIT program, University of Eastern Finland}
+\tr{
+    Expecting a MSc. degree in January/February 2012.\\
+    Average Computer Science grade > 4.5 (on a scale of 1–5)
+}{
+    Plánované dokončení studia v lednu či únoru 2012 (titul MSc).\\
+    Průměrná známka z informatiky > 4,5 (na škále 1–5)
+}
 
-\header{2006--2009}{Faculty of Informatics, Brno University of Technology}
-Graduated with a Bc. degree.\\
-Group project leader in \textit{The C++ Programming Language} and
-\textit{User Interface Programming} courses, with excellent results in both.
+\header{2006--2009}{\tr{Faculty of Informatics, Brno University of Technology}{Fakulta informatiky, Vysoké učení technické v Brně}}
+\tr{
+    Graduated with a Bc. degree.\\
+    Group project leader in \textit{The C++ Programming Language} and
+    \textit{User Interface Programming} courses, with excellent results in both.
+}{
+    Dosažený titul Bc.\\
+    Vedoucí projektů v předmětech \textit{Seminář C++} a
+    \textit{Tvorba uživatelských rozhraní}.
+}
 
 \header{2004--2006}{Farragut High School, Tennessee, USA}
-‘A’ grades in AP Computer Science, AP Physics, and AP German courses.\\
-Member of the school's Science National Honor Society.
+\tr{
+    ‘A’ grades in AP Computer Science, AP Physics, and AP German courses.\\
+    Member of the school's Science National Honor Society.
+}{
+    Studium v angličtině.\\
+    Člen školní \textit{Science National Honor Society}.
+}
 
 
-\section{Work Experience}
+\section{\tr{Work Experience}{Praxe}}
 
 \header{2006--2009}{DM Juventus}
-Developed a complete information system for small hotel administration.
+\tr{
+    Developed a complete information system for small hotel administration.
+}{
+    Návrh a vývoj informačního systému pro rezervace a správu hotelových hostů.
+}
 
-\section{Computing Skills}
+\section{\tr{Computing Skills}{IT dovednosti}}
 \begin{itemize}
-  \item[Programming] Python, C++/Qt; also C, \textsc{PHP}, Javascript, Java
-  \item[Operating Systems] Linux (system administrator); Microsoft Windows (user)
-  \item[Other Technologies] \textsc{HTML, CSS, SQL}, \LaTeX, Gimp, Inkscape
-  \item[School Experience] Database design, user interface design, theoretical computer science
+  \item[\tr{Programming}{Programování}]
+    Python, C++/Qt; \tr{also}{také} C, \textsc{PHP}, Javascript, Java
+  \item[\tr{Operating Systems}{Operační systémy}]
+    Linux (\tr{system administrator}{administrátor systému}); Microsoft Windows (\tr{user}{uživatel})
+  \item[\tr{Other Technologies}{Další technologie}]
+    \textsc{HTML, CSS, SQL}, \LaTeX, Gimp, Inkscape
+  \item[\tr{School Experience}{Školní zkušenosti}]
+    \tr{Database design, user interface design, theoretical computer science
+    }{Návrh databází, návrh uživatelských rozhraní, teoretická informatika
+    }
 \end{itemize}
 
-\section{Languages Spoken}
+\section{\tr{Languages Spoken}{Jazyky}}
 \begin{itemize}
-  \item Fluent English and Czech
-  \item Intermediate German.
+  \item \tr{Fluent English and Czech}{Plynná angličtina a čeština}
+  \item \tr{Intermediate German}{Pokročilá němčina}
 \end{itemize}
 
 \section{Online portfolio}
 \begin{itemize}
- \item[] Uses the username \texttt{encukou}
- \item[Github] Contributing to several open-source projects at \href{http://github.com/encukou}{\texttt{github.com}}
- \item[Stack Overflow] 5000+ reputation on the question-and-answer site
+ \item[Github]
+    \tr{
+        Contributing to several open-source projects at \href{http://github.com/encukou}{\texttt{github.com/encukou}}
+    }{
+        Přispívá do několika open-source projektů na \href{http://github.com/encukou}{\texttt{github.com/encukou}}
+    }
+ \item[Stack Overflow]
+    \tr{
+        5000+ reputation on the question-and-answer site
+    }{
+        Reputace 5000+ na
+    }
         \href{http://stackoverflow.com/users/99057/petr-viktorin}{\texttt{stackoverflow.com}}
 \end{itemize}
 
-\section{Activities and Interests}
+\section{\tr{Activities and Interests}{Další zájmy}}
 \begin{itemize}
- \item Web technologies --- administrator of a small community site written in PHP.
- \item Visual arts --- won the Scholastic Art \&~Writing Awards Gold Key in~2006.
- \item Enjoys the outdoors, casual Geocacher.
+ \item \tr{
+    Web technologies --- administrator of a small community site written in PHP.
+ }{
+    Webové technologie --- administrátor komunitní stránky napsané v PHP.
+ }
+ \item \tr{
+    Visual arts --- won the Scholastic Art \&~Writing Awards Gold Key in~2006.
+ }{
+    Umění --- v roce 2006 vyhrál \textit{Scholastic Art \&~Writing Awards Gold Key}.
+ }
+ \item \tr{
+    Enjoys the outdoors, casual Geocacher.
+ }{
+    Cestování, příroda, Geocaching.
+ }
 \end{itemize}
 
 \vfill
 {
 \small\it\hfill
-Current as of 4$^{\textrm\small{th}}$ of January, 2012
+\tr{
+    Current as of \longdate\today
+}{
+    \newdateformat{csdate}{\THEDAY. {\monthname} \THEYEAR}
+    \csdate\today
+}
 }
 
 \end{document}
