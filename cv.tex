@@ -1,0 +1,146 @@
+
+%
+% Copyright (c) 2010-2012 Petr Viktorin
+% The layout/design of this CV is licensed under a  licensed under the Creative
+% Commons Attribution-ShareAlike 3.0 Unported License, available at
+% http://creativecommons.org/licenses/by-sa/3.0/
+%
+% The content is, of course, quite entirely mine.
+%
+% Requested attribution:
+% please link to http://github.com/encukou/cv (or your fork).
+%
+% For sending your finished CV to companies/headhunters, no attribution
+% is required on their copy.
+%
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage[T1, IL2]{fontenc}
+
+\usepackage{fouriernc}
+\usepackage{tgpagella}
+\usepackage[activate=true]{microtype}
+\usepackage[pdfborder={0 0 0}]{hyperref}
+\usepackage{amssymb}
+
+\usepackage{calc}
+\newdimen\runinlength
+\setlength\runinlength{3cm+1em}
+\newdimen\centeroffset
+\setlength\centeroffset{-\runinlength/4}
+\usepackage[a4paper,margin=2cm,left=2cm+\runinlength, right=3.5cm]{geometry}
+
+
+\IfFileExists{personalinfo.tex}{\input{personalinfo.tex}}{\input{personalinfo_hidden.tex}}
+
+
+\pagestyle{empty}
+
+\parindent=0cm
+\newcommand\runin[1]{\par\makebox[0cm]{\hspace{-\runinlength}\makebox[3cm]{\hspace{\fill}#1}\hspace{\fill}}}
+
+\newcommand\miniheader[1]{{\bf#1}\par}
+
+\newcommand\header[2]{\vspace{1em}\runin{#1}\miniheader{#2}}
+
+\newcommand\centered[1]{
+  \hspace{\centeroffset}\begin{minipage}{\textwidth}
+  \begin{center}
+  #1
+  \end{center}
+  \end{minipage}
+}
+
+\renewenvironment{itemize}{
+  \newdimen\itemizeskip
+  \setlength\itemizeskip{1ex}
+  \renewcommand\item[1][$\bullet$]{\vspace{\itemizeskip}\runin{##1}}
+  \newdimen\itemizetopskip
+  \setlength\itemizetopskip{1em-\itemizeskip}
+  \vspace{\itemizetopskip}
+}{
+}
+
+\renewcommand\section[1]{\vspace{2.5em}{\hspace{-2em}\Large#1}}
+
+\begin{document}
+
+\centered{
+{\Large\sc Petr Viktorin}
+
+
+\small
+\vspace{1em}
+
+\personalinfoAddress
+
+\vspace{.5em}
+\begin{tabular}{rl}
+Birth Date & 14$^{\textrm\small{th}}$ of January, 1987 \\
+E-mail & \href{mailto:encukou@gmail.com}{encukou@gmail.com} \\
+Phone & \personalinfoPhone
+\end{tabular}
+
+}
+
+\section{Education and Qualifications}
+
+\header{2009 to date}{IMPIT program, University of Eastern Finland}
+Expecting a MSc. degree in January/February 2012.\\
+Average Computer Science grade $\geq$ 4.5 (on a scale of 1–5)
+
+\header{2006--2009}{Faculty of Informatics, Brno University of Technology}
+Graduated with a Bc. degree.\\
+Group project leader in \textit{The C++ Programming Language} and
+\textit{User Interface Programming} courses, with excellent results in both.
+
+\header{2004--2006}{Farragut High School, Tennessee, USA}
+‘A’ grades in AP Computer Science, AP Physics, and AP German courses.\\
+Member of the school's Science National Honor Society.
+
+
+\section{Work Experience}
+
+\header{2006--2009}{DM Juventus}
+Developed a complete information system for small hotel administration.
+
+\section{Computing Skills}
+\begin{itemize}
+  \item[Programming] Python, C++/Qt; also C, \textsc{PHP}, Javascript, Java
+  \item[Operating Systems] Linux (system administrator); Microsoft Windows (user)
+  \item[Other Technologies] \textsc{HTML, CSS, SQL}, \LaTeX, Gimp, Inkscape
+  \item[School Experience] Database design, user interface design, theoretical computer science
+\end{itemize}
+
+\section{Languages Spoken}
+\begin{itemize}
+  \item Fluent English and Czech
+  \item Intermediate German.
+\end{itemize}
+
+\section{Online portfolio}
+\begin{itemize}
+ \item[] Uses the username \texttt{encukou}
+ \item[Github] Contributing to several open-source projects at \href{http://github.com/encukou}{\texttt{github.com}}
+ \item[Stack Overflow] 5000+ reputation on the question-and-answer site
+        \href{http://stackoverflow.com/users/99057/petr-viktorin}{\texttt{stackoverflow.com}}
+\end{itemize}
+
+\section{Activities and Interests}
+\begin{itemize}
+ \item Web technologies --- administrator of a small community site written in PHP.
+ \item Visual arts --- won the Scholastic Art \&~Writing Awards Gold Key in~2006.
+ \item Enjoys the outdoors, casual Geocacher.
+\end{itemize}
+
+\vfill
+{
+\small\it\hfill
+Current as of 4$^{\textrm\small{th}}$ of January, 2012
+}
+
+\end{document}
+
