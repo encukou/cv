@@ -5,6 +5,8 @@
 % Commons Attribution-ShareAlike 3.0 Unported License, available at
 % http://creativecommons.org/licenses/by-sa/3.0/
 %
+% Use Lualatex to typeset the document
+%
 % The content is, of course, quite entirely mine.
 %
 % Requested attribution:
@@ -15,8 +17,8 @@
 %
 
 \documentclass[a4paper,10pt]{article}
-
-\usepackage[utf8]{inputenc}
+\usepackage[utf8]{luainputenc}
+\usepackage[pdfborder={0 0 0}]{hyperref}
 
 \providecommand\tr[2]{#2}
 \tr{}{\usepackage[czech]{babel}}
@@ -27,15 +29,15 @@
     \IfFileExists{personalinfo.tex}{\input{personalinfo.tex}}{\input{personalinfo_hidden.tex}}}
 \includeinfo
 
-\usepackage[T1, IL2]{fontenc}
+%\usepackage[T1, IL2]{fontenc}
 \usepackage[nodayofweek]{datetime}
 
 \usepackage{fouriernc}
 \usepackage{tgpagella}
 \usepackage{color}
 \usepackage[activate=true]{microtype}
-\usepackage[pdfborder={0 0 0}]{hyperref}
 \usepackage{amssymb}
+\usepackage{fontspec}
 
 \usepackage{calc}
 \newdimen\runinlength
@@ -44,6 +46,7 @@
 \setlength\centeroffset{-\runinlength/4}
 \usepackage[a4paper,margin=2cm,left=2cm+\runinlength, right=3.5cm]{geometry}
 
+%\setmainfont[Numbers=OldStyle]{TeX Gyre Pagella}
 
 \pagestyle{empty}
 
@@ -101,8 +104,10 @@ E-mail &
 
 \header{\tr{2012 to date}{2012---\phantom{000}}}{Associate Software Engineer\tr{ at}{,} Red Hat}
 \tr{
-    Working on the \href{http://freeipa.org/}{FreeIPA} project.\\
-    Technologies used: Python, LDAP, Kerberos
+    I am working on the \href{http://freeipa.org/}{FreeIPA} project, a part of Red Hat Identity Management.\\
+    My responsibilities include feature development, refactoring, and bug fixing.\\
+    I~also lead the upstream integration testing effort.\\
+    Technologies used: Python, LDAP, Nose, Jenkins CI
 }{
     Práce na projektu \href{http://freeipa.org/}{FreeIPA}\\
     s použitím technologií Python, LDAP, Kerberos
@@ -110,7 +115,7 @@ E-mail &
 
 \header{2006--2009}{\tr{Programmer at DM Juventus}{Programátor v DM Juventus}}
 \tr{
-    Developed a complete information system for small hotel administration.\\
+    I have developed a complete information system for a small hotel.\\
     Technologies used: C++/Qt, MySQL.
 }{
     Návrh a vývoj informačního systému pro rezervace a správu hotelových hostů
@@ -119,92 +124,81 @@ E-mail &
 
 \section{\tr{Education and Qualifications}{Vzdělání}}
 
-\header{\tr{2009--2012}{2009--2012}}{IMPIT program, University of Eastern Finland}
+\header{2012}{Red Hat Certified Engineer}
+\tr{Certification number}{Certifikát číslo}
+    \href{https://www.redhat.com/wapps/training/certification/verify.html?certNumber=120-204-953}{%
+        \texttt{120-204-953}}
+
+\header{\tr{2009--2012}{2009--2012}}{MSc, IMPIT program, University of Eastern Finland}
 \tr{
-    Graduated with a MSc. degree.\\
-    Average Computer Science grade > 4.5 (on a scale of 1–5).\\
-    Led a 2-credit \emph{Python Workshop} in 2010
+    I have led a 2-credit \emph{Python Workshop} in 2010
 }{
-    Dosažený titul MSc.\\
-    Průměrná známka z informatiky > 4,5 (na škále 1–5)\\
-    V roce 2010 vedl kurz \emph{Python Workshop}
+    V roce 2010 jsem vedl kurz \emph{Python Workshop}
 }
 
-\header{2006--2009}{\tr{Faculty of Informatics, Brno University of Technology}{Fakulta informatiky, Vysoké učení technické v Brně}}
+\header{2006--2009}{Bc., \tr{Faculty of Informatics, Brno University of Technology}{Fakulta informatiky, Vysoké učení technické v Brně}}
+
+\header{2004--2006}{Farragut High School, Tennessee, USA}
 \tr{
-    Graduated with a Bc. degree.\\
-    Group project leader in \textit{The C++ Programming Language} and
-    \textit{User Interface Programming} courses, with excellent results in both.
+    Graduated from an English-language high school.
 }{
-    Dosažený titul Bc.\\
-    Vedoucí projektů v předmětech \textit{Seminář C++} a
-    \textit{Tvorba uživatelských rozhraní}.
+    Úspěšné studium v angličtině.
 }
 
-% \header{2004--2006}{Farragut High School, Tennessee, USA}
-% \tr{
-%     ‘A’ grades in AP Computer Science, AP Physics, and AP German courses.\\
-%     Member of the school's Science National Honor Society.
-% }{
-%     Studium v angličtině.\\
-%     Člen školní \textit{Science National Honor Society}.
-% }
-
-
-\section{\tr{Computing Skills}{IT dovednosti}}
+\section{\tr{Activities and Interests}{Aktivity a zájmy}}
 \begin{itemize}
-  \item[\tr{Programming}{Programování}]
-    Python, C++/Qt; \tr{also}{také} C, \textsc{PHP}, Javascript, Java
-  \item[\tr{Operating Systems}{Operační systémy}]
-    Linux (\tr{system administrator}{administrátor systému}); Microsoft Windows (\tr{user}{uživatel})
-  \item[\tr{Other Technologies}{Další technologie}]
-    \textsc{HTML, CSS, SQL}, \LaTeX, Gimp, Inkscape
-  \item[\tr{School Experience}{Školní zkušenosti}]
-    \tr{Database design, user interface design, theoretical computer science
-    }{Návrh databází, návrh uživatelských rozhraní, teoretická informatika
+ \item[\tr{Programming}{Programování}]%
+    \tr{%
+        I program in Python.
+        I also know my way around C, C++/Qt, and Java.
+    }{%
+        Programuji v~jazyce Python.
+        Rozumím ale také jazykům C, C++/Qt, a Java.
+    }
+ \item[Open source]%
+    \tr{%
+        I contribute to several open-source projects at \href{http://github.com/encukou}{\texttt{github.com/encukou}}
+    }{%
+        Přispívám do několika open-source projektů na \href{http://github.com/encukou}{\texttt{github.com/encukou}}
+    }
+ \item[Pyvec]%
+    \tr{%
+        I am a member of the
+    }{%
+        Jsem členem sdružení
+    }
+        \href{http://pyvec.org}{\texttt{Pyvec.org}}
+    \tr{%
+        organization, which promotes the Python language in the Czech Republic.
+        I help organize the “Pyvo” meetups in Brno.
+    }{%
+        , které podporuje jazyk Python v~České republice.
+        Jsem spoluorganizátor brněnských pythonových srazů.
+    }
+ \item[Stack Overflow]%
+    \tr{%
+        I have 10,000+ reputation on the question-and-answer site
+    }{%
+        Na stránce
+    }%
+        \href{http://stackoverflow.com/users/99057/petr-viktorin}{\texttt{stackoverflow.com}}%
+    \tr{%
+        .%
+    }{
+        mám reputaci přes 10\,000.
+    }%
+ \item[\tr{Other interests}{Další zájmy}]%
+    \tr{%
+        I enjoy hobby electronics, traveling, the outdoors, and puzzle hunt games.
+    }{%
+        Zajímám se o~elektroniku, cestuji, hraji šifrovací hry.
     }
 \end{itemize}
 
 \section{\tr{Languages Spoken}{Jazyky}}
 \begin{itemize}
   \item \tr{Fluent English and Czech}{Plynná angličtina a čeština}
-  \item \tr{Intermediate German}{Pokročilá němčina}
-\end{itemize}
-
-\section{Online portfolio}
-\begin{itemize}
- \item[Github]
-    \tr{
-        Contributing to several open-source projects at \href{http://github.com/encukou}{\texttt{github.com/encukou}}
-    }{
-        Přispívá do několika open-source projektů na \href{http://github.com/encukou}{\texttt{github.com/encukou}}
-    }
- \item[Stack Overflow]
-    \tr{
-        8000+ reputation on the question-and-answer site
-    }{
-        Reputace 8000+ na
-    }
-        \href{http://stackoverflow.com/users/99057/petr-viktorin}{\texttt{stackoverflow.com}}
-\end{itemize}
-
-\section{\tr{Activities and Interests}{Další zájmy}}
-\begin{itemize}
- \item \tr{
-    Web technologies --- administrator of a small community site written in PHP.
- }{
-    Webové technologie --- administrátor komunitní stránky napsané v PHP.
- }
- \item \tr{
-    Visual arts --- won the Scholastic Art \&~Writing Awards Gold Key in~2006.
- }{
-    Umění --- v roce 2006 vyhrál \textit{Scholastic Art \&~Writing Awards Gold Key}.
- }
- \item \tr{
-    Enjoys the outdoors, casual Geocacher.
- }{
-    Cestování, příroda, Geocaching.
- }
+  \item \tr{Beginner German}{Začátečnická němčina}
 \end{itemize}
 
 \vfill
