@@ -1,9 +1,9 @@
 RM="rm *.aux *.bbl *.log *.toc *.ttt *.blg *.bcf *.out"
 $RM
-pdflatex cv-en.tex
+lualatex cv-en.tex
 $RM
-pdflatex cv-cs.tex
+lualatex cv-cs.tex
 $RM
-pdflatex cv-en.pub.tex
+lualatex cv-en.pub.tex
 $RM
-pdflatex cv-cs.pub.tex
+lualatex cv-cs.pub.tex
