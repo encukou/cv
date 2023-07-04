@@ -18,7 +18,7 @@
 
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{luainputenc}
-\usepackage[pdfborder={0 0 0}]{hyperref}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
 
 \providecommand\tr[2]{#2}
 \tr{}{\usepackage[czech]{babel}}
@@ -38,6 +38,8 @@
 \usepackage[activate=true]{microtype}
 \usepackage{amssymb}
 \usepackage{fontspec}
+\usepackage{siunitx}
+\usepackage{enumitem}
 
 \usepackage{calc}
 \newdimen\runinlength
@@ -50,14 +52,18 @@
 
 \pagestyle{empty}
 
+
+
 \parindent=0cm
 \newcommand\runin[1]{\par\makebox[0cm]{\hspace{-\runinlength}\makebox[3cm]{\hspace{\fill}#1}\hspace{\fill}}}
 
 \newcommand\miniheader[1]{{\bf#1}\par}
+\newcommand\miniheaderii[2]{{\bf#1} #2\par}
 
 \newcommand\header[2]{\vspace{1em}\runin{#1}\miniheader{#2}}
+\newcommand\headerii[3]{\vspace{1em}\runin{#1}\miniheaderii{#2}{#3}}
 
-\newcommand\positionheader[2]{\hspace{1em}{\bf#1} {#2}\par}
+\newcommand\positionheader[2]{\hspace{0em}{\bf#1} {#2}\par}
 
 \newcommand\centered[1]{
   \hspace{\centeroffset}\begin{minipage}{\textwidth}
@@ -68,16 +74,19 @@
 }
 
 \renewenvironment{itemize}{
+  \setlist{nosep}
   \newdimen\itemizeskip
-  \setlength\itemizeskip{1ex}
+  \setlength\itemizeskip{.5ex}
   \renewcommand\item[1][$\bullet$]{\vspace{\itemizeskip}\runin{##1}}
   \newdimen\itemizetopskip
-  \setlength\itemizetopskip{1em-\itemizeskip}
-  \vspace{\itemizetopskip}
 }{
+  \vspace{\itemizeskip}
 }
 
 \renewcommand\section[1]{\vspace{2.5em}{\hspace{-2em}\Large#1}}
+
+\newcommand\pep[1]{\href{https://peps.python.org/#1}{#1}}
+\newcommand\pepd[2]{\href{https://peps.python.org/#1}{PEP #1} -- #2}
 
 \begin{document}
 
@@ -90,34 +99,39 @@
 
 \personalinfoAddress
 
-\vspace{.5em}
-\begin{tabular}{rl}
-\tr{Birth Date}{Datum narození} &
-    \tr{14$^{\textrm\small{th}}$ of January, 1987}{14. ledna 1987} \\
-E-mail &
-    \href{mailto:encukou@gmail.com}{encukou@gmail.com} \\
-\tr{Phone}{Telefon} &
-    \personalinfoPhone
-\end{tabular}
+\href{mailto:encukou@gmail.com}{encukou@gmail.com} \\
+Brno, Czech Republic \\
 
 }
 
 \section{\tr{Work Experience}{Praxe}}
 
 \header{\tr{2012 to date}{2012---\phantom{000}}}{Red Hat}
-\positionheader{Principal Software Engineer}{(\tr{2022 to date}{2022---})}
-\positionheader{Senior Software Engineer}{(\tr{2016 to 2022}{2016---2022})}
+\positionheader{Principal Software Engineer}{(\tr{since 2022}{2022---})}
+\vspace{1em}
+%\positionheader{Senior Software Engineer}{(\tr{2016 to 2022}{2016---2022})}
 \tr{
-    Python maintenance
+    As part of the \emph{Python maintenance team}, I help integrate Python and
+    Python-based software into RPM-based Linux distributions.
+    I've co-authored the 2021 rewrite of the \href{https://docs.fedoraproject.org/en-US/packaging-guidelines/Python/}{Fedora Python Packaging Guidelines}
+    and the associated \href{https://src.fedoraproject.org/rpms/pyproject-rpm-macros}{\texttt{pyproject} RPM macros},
+    aiming to reuse upstream packaging metadata and align Fedora with the \href{https://pypi.org/}{PyPI} ecosystem.
+
+    I've coordinated porting thousands of Fedora packages from Python~2
+    to Python~3.
+
+    I was also allowed to spend significant work time contributing to CPython.
 }{
     Správa jazyka Python
 }
 
-\positionheader{Software Engineer}{(\tr{2014 to 2016}{2014---2016})}
-\positionheader{Associate Software Engineer}{(\tr{2012 to 2014}{2012---2014})}
+\vspace{1em}
+
+%\positionheader{Software Engineer}{(\tr{2014 to 2016}{2014---2016})}
+%\positionheader{Associate Software Engineer}{(\tr{2012 to 2014}{2012---2014})}
 \tr{
-    I worked on the \href{http://freeipa.org/}{FreeIPA} project, a part of Red Hat Identity Management.\\
-    My responsibilities include feature development, refactoring, and bug fixing.\\
+    Before 2015, I worked on the \href{http://freeipa.org/}{FreeIPA} project, a part of Red Hat Identity Management.
+    My responsibilities included feature development, refactoring, and bug fixing.
     I~also lead the upstream integration testing effort.\\
     Technologies used: Python, LDAP, Nose, Jenkins CI
 }{
@@ -126,103 +140,88 @@ E-mail &
 }
 
 \header{2006--2009}{\tr{Programmer at DM Juventus}{Programátor v DM Juventus}}
+\vspace{1em}
 \tr{
-    I have developed a complete information system for a small hotel.\\
-    Technologies used: C++/Qt, MySQL.
+    I have developed a complete information system for a small hotel,\\
+    using C++/Qt and MySQL.
 }{
     Návrh a vývoj informačního systému pro rezervace a správu hotelových hostů
     s~použitím technologií C++/Qt a MySQL.
 }
 
-\section{\tr{Education and Qualifications}{Vzdělání}}
+\section{\tr{CPython Experience}{Praxe}}
 
-\header{2012}{Red Hat Certified Engineer}
-\tr{Certification number}{Certifikát číslo}
-    \href{https://www.redhat.com/wapps/training/certification/verify.html?certNumber=120-204-953}{%
-        \texttt{120-204-953}}
+\header{2018 to date}{CPython core developer}
+    I work on the Python C API, improving the stable ABI, improving support
+    for multiple interpreters and making the API more friendly for languages
+    other than~C. I have (co-)authored several Python Enhancement Proposals:
+    \begin{itemize}
+    \item[]\pepd{489}{Multi-phase extension module initialization}
+    \item[]\pepd{573}{Module State Access from C Extension Methods}
+    \item[]\pepd{630}{Isolating Extension Modules}
+    \item[]\pepd{652}{Maintaining the Stable ABI}
+    \item[]\pepd{687}{Isolating modules in the standard library}
+    \item[]\pepd{689}{Unstable C API tier}
+    \item[]\pepd{697}{Limited C API for Extending Opaque Types}
+    \end{itemize}
 
-\header{\tr{2009--2012}{2009--2012}}{MSc, IMPIT program, University of Eastern Finland}
-\tr{
-    I have led a 2-credit \emph{Python Workshop} in 2010
-}{
-    V roce 2010 jsem vedl kurz \emph{Python Workshop}
-}
+    I made several contributions related to my job at Red Hat,
+    around packaging and security issues:
 
-\header{2006--2009}{Bc., \tr{Faculty of Informatics, Brno University of Technology}{Fakulta informatiky, Vysoké učení technické v Brně}}
+    \begin{itemize}
+    \item[]\pepd{394}{The “python” Command on Unix-Like Systems}
+    \item[]\pepd{627}{Recording installed projects}
+    \item[]\pepd{672}{Unicode-related Security Considerations for Python}
+    \item[]\pepd{706}{Filter for {\texttt{tarfile.extractall}}}
+    \end{itemize}
 
-\header{2004--2006}{Farragut High School, Tennessee, USA}
-\tr{
-    Graduated from an English-language high school.
-}{
-    Úspěšné studium v angličtině.
-}
+\header{2022}{Python Steering Council member}
+    I was elected to the highest decision-making body in
+    the Python project.
 
-\section{\tr{Activities and Interests}{Aktivity a zájmy}}
+\section{\tr{Education}{Vzdělání}}
+\vspace{1em}
+\runin{2012}\miniheaderii{MSc,}{University of Eastern Finland, School of Computing}
+\runin{2009}\miniheaderii{Bc.,}{\tr{Brno University of Technology, Faculty of Informatics}{Fakulta informatiky, Vysoké učení technické v Brně}}
+
+\section{\tr{Related Activities}{Aktivity a zájmy}}
+\vspace{1em}
 \begin{itemize}
- \item[\tr{Programming}{Programování}]%
-    \tr{%
-        I program in Python.
-        I also know my way around C, C++/Qt, and Java.
-    }{%
-        Programuji v~jazyce Python.
-        Rozumím ale také jazykům C, C++/Qt, a Java.
-    }
  \item[Open source]%
     \tr{%
-        I contribute to several open-source projects at \href{http://github.com/encukou}{\texttt{github.com/encukou}}
+        I contribute to various open-source projects at \href{http://github.com/encukou}{\texttt{github.com/encukou}}
     }{%
         Přispívám do několika open-source projektů na \href{http://github.com/encukou}{\texttt{github.com/encukou}}
     }
+ \item[Conference talks]%
+    I've spoken at several conferences. Here are the highlights.
+    \begin{itemize}
+    \item[]2021 -- \href{https://www.youtube.com/watch?v=pJlqB-PA96E}{Python in Fedora} (PackagingCon)
+    \item[]2019 -- \href{https://cz.pycon.org/2019/programme/talks/18/}{Building an async event loop} (PyCon CZ)
+    \item[]2018 -- \href{https://ep2018.europython.eu/conference/talks/bytecodes-and-stacks-a-look-at-cpythons-compiler-and-its-execution-model.html}{Bytecodes and stacks} (EuroPython)
+    \item[]2017 -- \href{https://cz.pycon.org/2017/speakers/detail/talk/14/}{How we started teaching Python} (PyCon CZ)
+    \item[]2016 -- \href{https://cz.pycon.org/2016/speakers/workshops/#petr-viktorin}{Turn On the Lights with MicroPython} (PyCon CZ workshop)
+    \item[]2015 -- \href{https://ep2015.europython.eu/conference/talks/import-deep-dive.html}{Import Deep Dive} (EuroPython)
+    \item[]2014 -- \href{https://ep2014.europython.eu/en/schedule/sessions/123/}{The Magic of Attribute Access} (EuroPython)
+    \item[]2013 -- \href{https://ep2013.europython.eu/conference/talks/terminals-command-lines-and-text-interfaces.html}{Terminals, command lines, and text interfaces } (EuroPython)
+    \end{itemize}
  \item[Pyvec]%
     \tr{%
-        I am a member of the
+        As a member of
     }{%
         Jsem členem sdružení
     }
-        \href{http://pyvec.org}{\texttt{Pyvec.org}}
+        \href{http://pyvec.org}{Pyvec.org}%
     \tr{%
-        organization, which promotes the Python language in the Czech Republic.
-        I help organize the “Pyvo” meetups in Brno.
+        , a non-profit that promotes Python in the Czech Republic,
+        I helped organize \href{https://pyvo.cz/en/}{Pyvo} meetups in Brno,
+        designed and taught free beginner courses for PyLadies CZ (and \href{https://naucse.python.cz/2021/online-jaro/}{anyone online}),
+        and helped at PyCon~CZ.
     }{%
         , které podporuje jazyk Python v~České republice.
         Jsem spoluorganizátor brněnských pythonových srazů.
     }
- \item[Stack Overflow]%
-    \tr{%
-        I have 10,000+ reputation on the question-and-answer site
-    }{%
-        Na stránce
-    }%
-        \href{http://stackoverflow.com/users/99057/petr-viktorin}{\texttt{stackoverflow.com}}%
-    \tr{%
-        .%
-    }{
-        mám reputaci přes 10\,000.
-    }%
- \item[\tr{Other interests}{Další zájmy}]%
-    \tr{%
-        I enjoy hobby electronics, traveling, the outdoors, and puzzle hunt games.
-    }{%
-        Zajímám se o~elektroniku, cestuji, hraji šifrovací hry.
-    }
 \end{itemize}
-
-\section{\tr{Languages Spoken}{Jazyky}}
-\begin{itemize}
-  \item \tr{Fluent English and Czech}{Plynná angličtina a čeština}
-  \item \tr{Beginner German}{Začátečnická němčina}
-\end{itemize}
-
-\vfill
-{
-\small\it\hfill
-\tr{
-    Current as of \longdate\today
-}{
-    \newdateformat{csdate}{\THEDAY. {\monthname} \THEYEAR}
-    \csdate\today
-}
-}
 
 \end{document}
 
